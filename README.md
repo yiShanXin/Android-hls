@@ -43,39 +43,44 @@
     
    # java Hook 代码 片段 (PS:不方便刚入门想Hook同学)所以推荐工具
    
-      static void hook(HookItem item, ClassLoader classLoader) {
-        try {
-            Class<?> hookClass = findClass(item.className, classLoader);
 
-            if (hookClass != null) {
+    
 
-                if (item.method != null && !item.method.equals("")) {
-                    for (Method method : hookClass.getDeclaredMethods()) {
-                        if (method.getName().equals(item.method) && !Modifier.isAbstract(method.getModifiers())) {
-                            XposedBridge.hookMethod(method, methodHook);
+
+       static void hook(HookItem item, ClassLoader classLoader) {
+
+            try {
+                Class<?> hookClass = findClass(item.className, classLoader);
+
+                if (hookClass != null) {
+
+                    if (item.method != null && !item.method.equals("")) {
+                        for (Method method : hookClass.getDeclaredMethods()) {
+                            if (method.getName().equals(item.method) && !Modifier.isAbstract(method.getModifiers())) {
+                                XposedBridge.hookMethod(method, methodHook);
+                            }
+                        }
+                    } else {
+                        for (Method method : hookClass.getDeclaredMethods()) {
+                            if(!Modifier.isAbstract(method.getModifiers())) {
+                                XposedBridge.hookMethod(method, methodHook);
+                            }
                         }
                     }
+
+                    if (item.constructor) {
+                        for (Constructor<?> constructor : hookClass.getDeclaredConstructors()) {
+                            XposedBridge.hookMethod(constructor, methodHook);
+                        }
+                    }
+
                 } else {
-                    for (Method method : hookClass.getDeclaredMethods()) {
-                        if(!Modifier.isAbstract(method.getModifiers())) {
-                            XposedBridge.hookMethod(method, methodHook);
-                        }
-                    }
+                    log(TAG + "class not found.");
                 }
-
-                if (item.constructor) {
-                    for (Constructor<?> constructor : hookClass.getDeclaredConstructors()) {
-                        XposedBridge.hookMethod(constructor, methodHook);
-                    }
-                }
-
-            } else {
-                log(TAG + "class not found.");
+            } catch (Error e) {
+                Module.logError(e);
             }
-        } catch (Error e) {
-            Module.logError(e);
         }
-    }
     
     
   经过hook 数据后 , 发现解密key SharePreference 是存在是经过二次混搅过得,so ！！！ 那就看播放界面是怎么处理 key的吧。机续通过 JD-GUI看代码吧！
@@ -84,15 +89,16 @@
   ![51cto player](https://github.com/yiShanXin/Android-hls/blob/master/images/QQ%E6%88%AA%E5%9B%BE20170314103455.png)
   
   
-  - com.google.android.exoplayer.core.PlayerActivity
+ - com.google.android.exoplayer.core.PlayerActivity
   
-  - com.google.android.exoplayer.core.PlayerFragment
-     
-      onPlayOnLine (处理在线播放)
-      
-      onPlayLocal (处理本地缓存播放)
-      
-      playSpecificChapter 
+ - com.google.android.exoplayer.core.PlayerFragment
+
+ 
+           onPlayOnLine (处理在线播放)
+                
+           onPlayLocal (处理本地缓存播放)
+                
+           playSpecificChapter 
 
 
 
@@ -132,8 +138,7 @@
 
 ![51cto vlc 播放](https://github.com/yiShanXin/Android-hls/blob/master/images/QQ%E5%9B%BE%E7%89%8720170314102038.jpg)  
       
-直接用 vlc 打开就是可以正常播放了，这次 Hook 之旅完成了.   
-      
+直接用 vlc 打开就是可以正常播放了，这次 Hook 之旅完成了.   
     
      
  
