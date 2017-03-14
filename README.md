@@ -39,7 +39,43 @@
    -  [Genymotion+Xposed](https://vimeo.com/156745941) 视频附带模拟器 安装环境，以及资源下载地址 ,
    > 可能需要<font color=red size=4>梯子(Fan qiang),</font> 文件是在google 服务器
     
-   -  通过 inspection 去Hook 方法名称, 减少不懂怎么Hook入门
+   -  通过 Inspeckage 去Hook 方法名称, 减少不懂怎么Hook入门 
+    
+   # java Hook 代码 片段 (PS:不方便刚入门想Hook同学)所以推荐工具
+   
+      static void hook(HookItem item, ClassLoader classLoader) {
+        try {
+            Class<?> hookClass = findClass(item.className, classLoader);
+
+            if (hookClass != null) {
+
+                if (item.method != null && !item.method.equals("")) {
+                    for (Method method : hookClass.getDeclaredMethods()) {
+                        if (method.getName().equals(item.method) && !Modifier.isAbstract(method.getModifiers())) {
+                            XposedBridge.hookMethod(method, methodHook);
+                        }
+                    }
+                } else {
+                    for (Method method : hookClass.getDeclaredMethods()) {
+                        if(!Modifier.isAbstract(method.getModifiers())) {
+                            XposedBridge.hookMethod(method, methodHook);
+                        }
+                    }
+                }
+
+                if (item.constructor) {
+                    for (Constructor<?> constructor : hookClass.getDeclaredConstructors()) {
+                        XposedBridge.hookMethod(constructor, methodHook);
+                    }
+                }
+
+            } else {
+                log(TAG + "class not found.");
+            }
+        } catch (Error e) {
+            Module.logError(e);
+        }
+    }
     
     
   经过hook 数据后 , 发现解密key SharePreference 是存在是经过二次混搅过得,so ！！！ 那就看播放界面是怎么处理 key的吧。机续通过 JD-GUI看代码吧！
