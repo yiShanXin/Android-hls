@@ -90,9 +90,11 @@
       `for i in `cat high.m3u8| grep ts `;do openssl aes-128-ecb -v -p  -K 33535253533654533134475239524e36 -d -in $i -out "out_16/"$i;done`
 
 
-> 备注  shell 批量解析m3u8 来自于同事<font color=red size=4>Feng  同学</font>的代码
-     
-![51cto vlc 播放](https://github.com/yiShanXin/Android-hls/blob/master/images/QQ%E5%9B%BE%E7%89%8720170314102038.jpg)  
+>  shell 批量解析m3u8 来自于同事<font color=red size=4>Feng  同学</font>的代码
+
+> 说明 上图代码段如果不知道这么写的道理 建议好好 opnssl help， 以及源代码处理大致逻辑，这个原理很重要
+
+![51cto vlc 播放](https://github.com/yiShanXin/Android-hls/blob/master/images/QQ%E5%9B%BE%E7%89%8720170314102038.jpg)  
       
 直接用 vlc 打开就是可以正常播放了，这次 Hook 之旅完成了.   
       
