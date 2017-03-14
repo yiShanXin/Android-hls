@@ -12,7 +12,7 @@
      
  -  通过 JD-GUI 查看 用到了 ExoPlayer 播放器
 
- ![51cto Code](https://github.com/yiShanXin/Android-hls/blob/master/images/QQ%E6%88%AA%E5%9B%BE20170314112708.png)
+    ![51cto Code](https://github.com/yiShanXin/Android-hls/blob/master/images/QQ%E6%88%AA%E5%9B%BE20170314112708.png)
      
         
 ## 第二步 了解 [ExoPlayer](https://github.com/google/ExoPlayer)
@@ -80,6 +80,7 @@
   - 得到结果  33535253533654533134475239524e36 
   
   - 加密 类型 aes-128-ecb 
+  
   ![51cto vlc 加解密](https://github.com/yiShanXin/Android-hls/blob/master/images/QQ%E6%88%AA%E5%9B%BE20170314103657.png)
 
 
