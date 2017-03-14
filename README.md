@@ -42,13 +42,13 @@
    -  通过 Inspeckage 去Hook 方法名称, 减少不懂怎么Hook入门 
     
    # java Hook 代码 片段 (PS:不方便刚入门想Hook同学)所以推荐工具
-   
-
+   > Inspeckage 部分代码如下
     
 
 
         static void hook(HookItem item, ClassLoader classLoader) {
-          try {
+         
+         try {
               Class<?> hookClass = findClass(item.className, classLoader);
 
               if (hookClass != null) {
