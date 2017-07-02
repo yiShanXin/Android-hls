@@ -1,7 +1,8 @@
 ##继上次[51CTO学院 原理分析](http://github.com/yiShanXin/Android-hls)
 
 这次我们开始新的旅途了.......先来两张效果图
-![Screen Shot 2017-06-15 at 2.42.52 PM.png](https://ooo.0o0.ooo/2017/06/15/59422d3a4ed07.png)
+
+
 <div >
 <img src="https://ooo.0o0.ooo/2017/06/27/59522283eceda.png" width="300" height="460" alt="Screen Shot 2017-06-15 at 10.26.26 AM.png"/>
 </div>
