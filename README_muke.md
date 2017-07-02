@@ -3,7 +3,7 @@
 这次我们开始新的旅途了.......先来两张效果图
 
 
-<div >
+<div align=center>
 <img src="https://ooo.0o0.ooo/2017/06/27/59522283eceda.png" width="300" height="460" alt="Screen Shot 2017-06-15 at 10.26.26 AM.png"/>
 </div>
 
